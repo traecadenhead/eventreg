@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EventReg.Model.Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerAdmins">
+          <Key>
+            <PropertyRef Name="CustomerAdminID" />
+          </Key>
+          <Property Name="CustomerAdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerPrefKeys">
+          <Key>
+            <PropertyRef Name="CustomerPrefKeyID" />
+          </Key>
+          <Property Name="CustomerPrefKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Required" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerPrefs">
+          <Key>
+            <PropertyRef Name="CustomerPrefID" />
+          </Key>
+          <Property Name="CustomerPrefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerPrefKeyID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="5000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identifier" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomerAdmins_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="CustomerAdmins" Type="Self.CustomerAdmins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="CustomerAdmins">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerAdmins_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="CustomerAdmins" Type="Self.CustomerAdmins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerAdmins">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPrefs_CustomerPrefKeys">
+          <End Role="CustomerPrefKeys" Type="Self.CustomerPrefKeys" Multiplicity="1" />
+          <End Role="CustomerPrefs" Type="Self.CustomerPrefs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerPrefKeys">
+              <PropertyRef Name="CustomerPrefKeyID" />
+            </Principal>
+            <Dependent Role="CustomerPrefs">
+              <PropertyRef Name="CustomerPrefKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPrefs_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="CustomerPrefs" Type="Self.CustomerPrefs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerPrefs">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventRegModelEntitiesStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerAdmins" EntityType="Self.CustomerAdmins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerPrefKeys" EntityType="Self.CustomerPrefKeys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerPrefs" EntityType="Self.CustomerPrefs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CustomerAdmins_Admins" Association="Self.FK_CustomerAdmins_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="CustomerAdmins" EntitySet="CustomerAdmins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerAdmins_Customers" Association="Self.FK_CustomerAdmins_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerAdmins" EntitySet="CustomerAdmins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPrefs_CustomerPrefKeys" Association="Self.FK_CustomerPrefs_CustomerPrefKeys">
+            <End Role="CustomerPrefKeys" EntitySet="CustomerPrefKeys" />
+            <End Role="CustomerPrefs" EntitySet="CustomerPrefs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPrefs_Customers" Association="Self.FK_CustomerPrefs_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerPrefs" EntitySet="CustomerPrefs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventReg.Model.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CustomerAdmins" Relationship="Self.FK_CustomerAdmins_Admins" FromRole="Admins" ToRole="CustomerAdmins" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerAdmin">
+          <Key>
+            <PropertyRef Name="CustomerAdminID" />
+          </Key>
+          <Property Name="CustomerAdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_CustomerAdmins_Admins" FromRole="CustomerAdmins" ToRole="Admins" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerAdmins_Customers" FromRole="CustomerAdmins" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="CustomerPrefKey">
+          <Key>
+            <PropertyRef Name="CustomerPrefKeyID" />
+          </Key>
+          <Property Name="CustomerPrefKeyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Required" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CustomerPrefs" Relationship="Self.FK_CustomerPrefs_CustomerPrefKeys" FromRole="CustomerPrefKeys" ToRole="CustomerPrefs" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerPref">
+          <Key>
+            <PropertyRef Name="CustomerPrefID" />
+          </Key>
+          <Property Name="CustomerPrefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerPrefKeyID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CustomerPrefKey" Relationship="Self.FK_CustomerPrefs_CustomerPrefKeys" FromRole="CustomerPrefs" ToRole="CustomerPrefKeys" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerPrefs_Customers" FromRole="CustomerPrefs" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identifier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CustomerAdmins" Relationship="Self.FK_CustomerAdmins_Customers" FromRole="Customers" ToRole="CustomerAdmins" />
+          <NavigationProperty Name="CustomerPrefs" Relationship="Self.FK_CustomerPrefs_Customers" FromRole="Customers" ToRole="CustomerPrefs" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomerAdmins_Admins">
+          <End Role="Admins" Type="Self.Admin" Multiplicity="1" />
+          <End Role="CustomerAdmins" Type="Self.CustomerAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="CustomerAdmins">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerAdmins_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CustomerAdmins" Type="Self.CustomerAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerAdmins">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPrefs_CustomerPrefKeys">
+          <End Role="CustomerPrefKeys" Type="Self.CustomerPrefKey" Multiplicity="1" />
+          <End Role="CustomerPrefs" Type="Self.CustomerPref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerPrefKeys">
+              <PropertyRef Name="CustomerPrefKeyID" />
+            </Principal>
+            <Dependent Role="CustomerPrefs">
+              <PropertyRef Name="CustomerPrefKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPrefs_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CustomerPrefs" Type="Self.CustomerPref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerPrefs">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventRegEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="CustomerAdmins" EntityType="Self.CustomerAdmin" />
+          <EntitySet Name="CustomerPrefKeys" EntityType="Self.CustomerPrefKey" />
+          <EntitySet Name="CustomerPrefs" EntityType="Self.CustomerPref" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <AssociationSet Name="FK_CustomerAdmins_Admins" Association="Self.FK_CustomerAdmins_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="CustomerAdmins" EntitySet="CustomerAdmins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerAdmins_Customers" Association="Self.FK_CustomerAdmins_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerAdmins" EntitySet="CustomerAdmins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPrefs_CustomerPrefKeys" Association="Self.FK_CustomerPrefs_CustomerPrefKeys">
+            <End Role="CustomerPrefKeys" EntitySet="CustomerPrefKeys" />
+            <End Role="CustomerPrefs" EntitySet="CustomerPrefs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPrefs_Customers" Association="Self.FK_CustomerPrefs_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerPrefs" EntitySet="CustomerPrefs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventRegModelEntitiesStoreContainer" CdmEntityContainer="EventRegEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="EventReg.Model.Entities.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerAdmins">
+            <EntityTypeMapping TypeName="EventReg.Model.Entities.CustomerAdmin">
+              <MappingFragment StoreEntitySet="CustomerAdmins">
+                <ScalarProperty Name="CustomerAdminID" ColumnName="CustomerAdminID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerPrefKeys">
+            <EntityTypeMapping TypeName="EventReg.Model.Entities.CustomerPrefKey">
+              <MappingFragment StoreEntitySet="CustomerPrefKeys">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CustomerPrefKeyID" ColumnName="CustomerPrefKeyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerPrefs">
+            <EntityTypeMapping TypeName="EventReg.Model.Entities.CustomerPref">
+              <MappingFragment StoreEntitySet="CustomerPrefs">
+                <ScalarProperty Name="CustomerPrefID" ColumnName="CustomerPrefID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerPrefKeyID" ColumnName="CustomerPrefKeyID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="EventReg.Model.Entities.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

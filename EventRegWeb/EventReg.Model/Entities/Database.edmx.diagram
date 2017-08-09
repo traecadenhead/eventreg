@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="de023a3a7ee94d998dd01d18a287b323" Name="Diagram1">
+        <EntityTypeShape EntityType="EventReg.Model.Entities.Admin" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventReg.Model.Entities.CustomerAdmin" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventReg.Model.Entities.CustomerPrefKey" Width="1.5" PointX="3.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventReg.Model.Entities.CustomerPref" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventReg.Model.Entities.Customer" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="EventReg.Model.Entities.FK_CustomerAdmins_Admins" ManuallyRouted="false" />
+        <AssociationConnector Association="EventReg.Model.Entities.FK_CustomerAdmins_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="EventReg.Model.Entities.FK_CustomerPrefs_CustomerPrefKeys" ManuallyRouted="false" />
+        <AssociationConnector Association="EventReg.Model.Entities.FK_CustomerPrefs_Customers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

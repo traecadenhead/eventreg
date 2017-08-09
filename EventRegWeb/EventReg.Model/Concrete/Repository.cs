@@ -17,11 +17,11 @@ namespace EventReg.Model.Concrete
 {
     public partial class Repository : IDataRepository
     {
-        //private EventReg.Model.Entities.EventRegEntities db;
+        private EventReg.Model.Entities.EventRegEntities db;
 
         public Repository()
         {
-            //db = new EventRegEntities();
+            db = new EventRegEntities();
         }
     }
 }

@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="EventReg.UI.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="EventReg.UI.MvcApplication" Language="C#" %>

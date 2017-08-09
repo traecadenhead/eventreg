@@ -56,3 +56,5 @@ C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\bin\System.Web.
 C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\obj\Debug\EventReg.UI.csprojResolveAssemblyReference.cache
 C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\obj\Debug\EventReg.UI.dll
 C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\obj\Debug\EventReg.UI.pdb
+C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\bin\EntityFramework.dll
+C:\Users\traec_000\Source\Repos\EventReg\EventRegWeb\EventReg.UI\bin\EntityFramework.xml

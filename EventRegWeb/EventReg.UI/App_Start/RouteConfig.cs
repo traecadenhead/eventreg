@@ -14,15 +14,15 @@ namespace EventReg.UI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "App",
-                url: "{customer}/app/{*path}",
-                defaults: new { controller = "Home", action = "App", id = UrlParameter.Optional }
+                name: "Admin",
+                url: "admin/{*path}",
+                defaults: new { controller = "Home", action = "Admin", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "Admin",
-                url: "{customer}/admin/{*path}",
-                defaults: new { controller = "Home", action = "Admin", id = UrlParameter.Optional }
+                name: "App",
+                url: "{customer}/app/{*path}",
+                defaults: new { controller = "Home", action = "App", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
