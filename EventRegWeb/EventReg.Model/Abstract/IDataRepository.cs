@@ -15,6 +15,8 @@ namespace EventReg.Model.Abstract
         IQueryable<Admin> Admins { get; }
         int SaveAdmin(Admin entity);
         bool DeleteAdmin(int id);
+        Admin GetAdminUser(int adminID);
+        Admin SignInAdmin(Admin login);
         #endregion
 
         #region Customers

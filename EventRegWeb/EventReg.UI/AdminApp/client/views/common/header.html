@@ -1,5 +1,5 @@
 ﻿<div ng-controller="CommonHeader" class="navbar navbar-inverse navbar-fixed-top" id="header">
-    <div class="container">
+    <div ng-class="{'hide': current == 'SignIn'}" class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="ToggleNav()">
                 <span class="icon-bar"></span>
@@ -11,7 +11,6 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{'current': current == 'Home'}"><a ng-click="LoadState('Home')">RegMe - Admin</a></li>
                 <li ng-class="{'current': current == 'Customer'}"><a ng-click="LoadState('Customers')">Customers</a></li>
-                <li>{{current}}</li>
             </ul>
         </div>
     </div>

@@ -1,0 +1,22 @@
+﻿<div ng-controller="HomeSignIn">
+    <h1>RegMe - Admin Sign In</h1>
+    <form ng-submit="Submit()">
+        <div class="item">
+            <label for="Email">Email</label>
+            <div class="field">
+                <input type="text" ng-model="login.Email"/>
+            </div>
+        </div>
+        <div class="item">
+            <label for="Password">Password</label>
+            <div class="field">
+                <input type="password" ng-model="login.Password" />
+            </div>
+        </div>
+        <div class="item">
+            <div class="field">
+                <input type="submit" value="Sign In" />
+            </div>
+        </div>
+    </form>
+</div>

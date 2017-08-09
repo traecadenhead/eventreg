@@ -120,6 +120,40 @@ namespace EventReg.Model.Concrete
             return false;
         }
 
+        public Admin GetAdminUser(int adminID)
+        {
+            try
+            {
+                var admin = Admins.Where(n => n.AdminID == adminID).Select(n => new { Admin = n, Customers = n.CustomerAdmins.Select(c => c.Customer).ToList() }).FirstOrDefault();
+                Admin entity = admin.Admin;
+                entity.Customers = admin.Customers;
+                return entity;
+            }
+            catch(Exception ex)
+            {
+                HttpContext.Current.Trace.Warn(ex.ToString());
+            }
+            return null;
+        }
+
+        public Admin SignInAdmin(Admin login)
+        {
+            try
+            {
+                string hashPassword = CreateSHAHash(login.Password);
+                var entity = Admins.Where(n => n.Email == login.Email).Where(n => n.Password == hashPassword).FirstOrDefault();
+                if(entity != null)
+                {
+                    return GetAdminUser(entity.AdminID);
+                }
+            }
+            catch(Exception ex)
+            {
+                HttpContext.Current.Trace.Warn(ex.ToString());
+            }
+            return null;
+        }
+
         # endregion
     }
 }

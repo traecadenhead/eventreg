@@ -12,6 +12,7 @@ namespace EventReg.Model.Entities
     [MetadataType(typeof(AdminJson))]
     public partial class Admin
     {
+        public List<Customer> Customers { get; set; }
     }
 
     public class AdminJson

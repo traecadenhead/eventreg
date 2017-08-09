@@ -2,10 +2,31 @@
     margin-top: 70px;
 }
 
+.hide{
+    display: none;
+}
+
 a{
     cursor: pointer;
 }
 
 .navbar-collapse .navbar-nav > li.current > a{
     color: #ffffff;
+}
+
+form .item{
+    display: block;
+    margin-top: 20px;
+}
+
+form .item label{
+    display: block;
+}
+
+form .item .field{
+    display: block;
+}
+
+form .item .field input[type=text], form .item .field input[type=password]{
+    display: block;
 }

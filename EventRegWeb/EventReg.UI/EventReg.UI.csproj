@@ -150,6 +150,8 @@
   <ItemGroup>
     <Content Include="AdminApp\client\scripts\app\config.js" />
     <Content Include="AdminApp\client\scripts\app\routing.js" />
+    <Content Include="AdminApp\client\scripts\controllers\common.js" />
+    <Content Include="AdminApp\client\scripts\controllers\customer.js" />
     <Content Include="AdminApp\client\scripts\controllers\home.js" />
     <Content Include="AdminApp\client\scripts\services\db.js" />
     <Content Include="AdminApp\client\scripts\services\device.js" />
@@ -157,8 +159,16 @@
     <Content Include="AdminApp\client\scripts\services\ga.js" />
     <Content Include="AdminApp\client\scripts\services\objectHandler.js" />
     <Content Include="AdminApp\client\scripts\services\root.js" />
+    <Content Include="AdminApp\client\scripts\services\security.js" />
+    <Content Include="AdminApp\client\views\common\header.html" />
+    <Content Include="AdminApp\client\views\customer\index.html" />
     <Content Include="AdminApp\client\views\home\index.html" />
+    <Content Include="AdminApp\client\views\home\signin.html" />
     <Content Include="AdminApp\css\app.css" />
+    <Content Include="AdminApp\css\bootstrap-theme.css" />
+    <Content Include="AdminApp\css\bootstrap-theme.min.css" />
+    <Content Include="AdminApp\css\bootstrap.css" />
+    <Content Include="AdminApp\css\bootstrap.min.css" />
     <Content Include="AdminApp\img\burger.png" />
     <Content Include="AdminApp\img\search.png" />
     <Content Include="AdminApp\js\amplify.min.js" />
@@ -201,6 +211,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\AdminController.cs" />
     <Compile Include="Controllers\API\BaseController.cs" />
     <Compile Include="Controllers\API\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
