@@ -1,0 +1,11 @@
+﻿.mainContainer{
+    margin-top: 70px;
+}
+
+a{
+    cursor: pointer;
+}
+
+.navbar-collapse .navbar-nav > li.current > a{
+    color: #ffffff;
+}

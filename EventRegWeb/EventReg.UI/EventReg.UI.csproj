@@ -148,6 +148,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminApp\client\scripts\app\config.js" />
+    <Content Include="AdminApp\client\scripts\app\routing.js" />
+    <Content Include="AdminApp\client\scripts\controllers\home.js" />
+    <Content Include="AdminApp\client\scripts\services\db.js" />
+    <Content Include="AdminApp\client\scripts\services\device.js" />
+    <Content Include="AdminApp\client\scripts\services\ga-web.js" />
+    <Content Include="AdminApp\client\scripts\services\ga.js" />
+    <Content Include="AdminApp\client\scripts\services\objectHandler.js" />
+    <Content Include="AdminApp\client\scripts\services\root.js" />
+    <Content Include="AdminApp\client\views\home\index.html" />
+    <Content Include="AdminApp\css\app.css" />
+    <Content Include="AdminApp\img\burger.png" />
+    <Content Include="AdminApp\img\search.png" />
+    <Content Include="AdminApp\js\amplify.min.js" />
+    <Content Include="AdminApp\js\angular-animate.min.js" />
+    <Content Include="AdminApp\js\angular-google-maps.min.js" />
+    <Content Include="AdminApp\js\angular-sanitize.min.js" />
+    <Content Include="AdminApp\js\angular-simple-logger.js" />
+    <Content Include="AdminApp\js\angular-touch.min.js" />
+    <Content Include="AdminApp\js\angular-ui-router.min.js" />
+    <Content Include="AdminApp\js\angular.min.js" />
+    <Content Include="AdminApp\js\angulartics\angulartics-ga.js" />
+    <Content Include="AdminApp\js\angulartics\angulartics.js" />
+    <Content Include="AdminApp\js\injections.js" />
+    <Content Include="AdminApp\js\jquery-1.12.4.min.js" />
+    <Content Include="AdminApp\js\loading-bar\loading-bar.css" />
+    <Content Include="AdminApp\js\loading-bar\loading-bar.js" />
+    <Content Include="AdminApp\js\loading-bar\loading-bar.min.css" />
+    <Content Include="AdminApp\js\loading-bar\loading-bar.min.js" />
+    <Content Include="AdminApp\js\lodash.js" />
+    <Content Include="AdminApp\js\ng-device-detector.js" />
+    <Content Include="AdminApp\js\ng-device-detector.min.js" />
+    <Content Include="AdminApp\js\re-tree.js" />
+    <Content Include="AdminApp\js\relative-paths-in-partial.js" />
+    <Content Include="AdminApp\js\ui-bootstrap-tpls-2.5.0.min.js" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\App.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
@@ -181,6 +216,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminApp\fonts\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
