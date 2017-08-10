@@ -1,7 +1,27 @@
 (function (app) {
     var deviceSvc = function (db, $rootScope, root, $q, $state, $http, deviceDetector) {
 
-        var Alert = function (type, message, title, buttons) {
+        var Alert = function (message, title, buttons) {
+            var deferred = $q.defer();
+            GenerateAlert("alert", message, title, buttons).then(function (data) {
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        };
+
+        var Confirm = function (message, title, buttons) {
+            var deferred = $q.defer();
+            GenerateAlert("confirm", message, title, buttons).then(function (data) {
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        };
+
+        var GenerateAlert = function (type, message, title, buttons) {
             var deviceType = amplify.store("DeviceType");
             var deferred = $q.defer();
             if (deviceType != 'Web') {
@@ -122,6 +142,7 @@
 
         return {
             Alert: Alert,
+            Confirm: Confirm,
             OpenUrl: OpenUrl,
             CallAction: CallAction
         };

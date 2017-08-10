@@ -30,6 +30,16 @@
             }
         }
     })
+    .state('CustomerEdit', {
+        url: '/admin/customer/edit/{customerID}',
+        views: {
+            "mainContainer": {
+                templateUrl: function ($stateParams) {
+                    return '/AdminApp/client/views/customer/edit.html';
+                }
+            }
+        }
+    })
     .state('Home', {
         url: '/admin',
         views: {

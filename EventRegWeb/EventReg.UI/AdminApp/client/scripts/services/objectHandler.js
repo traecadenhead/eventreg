@@ -44,11 +44,21 @@
             return Math.floor(Math.random() * max);
         };
 
+        var HasValue = function (param) {
+            if (param != undefined && param != null && param != '' && param != '0' && param != 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
         return {
             ToBool: ToBool,
             ToObject: ToObject,
             ToInt: ToInt,
-            GetRandomNumber: GetRandomNumber
+            GetRandomNumber: GetRandomNumber,
+            HasValue: HasValue
         };
     };
     app.factory("oh", oh);

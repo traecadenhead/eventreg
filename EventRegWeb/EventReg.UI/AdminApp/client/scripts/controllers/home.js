@@ -16,8 +16,7 @@
                     $state.go("Home");
                 }
                 else {
-                    // TO DO: Rewrite the alert service so alert and confirm are 2 different calls
-                    deviceSvc.Alert("alert", "Sorry, we couldn't sign you in with the information you entered.");
+                    deviceSvc.Alert("Sorry, we couldn't sign you in with the information you entered.");
                 }
             });
         };
@@ -35,10 +34,12 @@
 // Index
 (function (app) {
     var HomeIndex = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security) {
+        $scope.user = null;
 
         var Load = function () {
-            security.CheckLogin().then(function () {
+            security.CheckLogin().then(function (user) {
                 ga.TrackScreen("HomeIndex");
+                $scope.user = user;
             });            
         };
 

@@ -77,7 +77,7 @@
             return DeferredGet(req, true);
         };
 
-        var List = function (type, additional, fresh, subset, noStore) {
+        var List = function (type, fresh, subset, additional, noStore) {
             if (subset == undefined || subset == null) {
                 subset = '';
             }

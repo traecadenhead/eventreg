@@ -1,3 +1,9 @@
 ﻿<div ng-controller="CustomerIndex">
-    Customers
+    <h1>Customers</h1>
+    <a class="btn-default" ng-click="Edit(0)">Add a Customer</a>
+    <div class="list-group">
+        <div ng-repeat="item in customers" class="list-group-item">
+            <a class="list-group-item-heading" ng-click="Edit(item.CustomerID)">{{item.Name}}</a>
+        </div>
+    </div>
 </div>

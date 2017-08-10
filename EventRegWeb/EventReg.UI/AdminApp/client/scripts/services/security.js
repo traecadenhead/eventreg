@@ -24,22 +24,46 @@
             }
         };
 
-        var CheckLogin = function () {
+        var CheckLogin = function (type) {
             var deferred = $q.defer();
-            if (!IsLoggedIn()) {
+            var user = GetUser();
+            if (user == null || !HasType(type)) {
                 $state.go("SignIn");
                 deferred.reject("not logged in");
             }
             else {
-                deferred.resolve(true);
+                deferred.resolve(user);
             }
             return deferred.promise;
-        }
+        };
+
+        var HasType = function(type){
+            if(type == undefined || type == null || type == ''){
+                return true;
+            }
+            else{
+                var user = GetUser();
+                if (type == "Admin" && user.Type == 'Admin') {
+                    return true;
+                }
+                else if (type == "Customer" && (user.Type == 'Admin' || user.Type == 'Customer')) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+
+        var GetUser = function () {
+            return amplify.store("AdminUser");
+        };
 
         return {
             SignIn: SignIn,
             IsLoggedIn: IsLoggedIn,
-            CheckLogin: CheckLogin
+            CheckLogin: CheckLogin,
+            GetUser: GetUser
         };
     };
     security.$inject = ["$q", "db", "$state"];

@@ -16,5 +16,23 @@ namespace EventReg.UI.Controllers.API
         {
             return db.Customers.Where(n => n.CustomerID == id).FirstOrDefault();
         }
+
+        [HttpGet]
+        public List<Customer> List()
+        {
+            return db.Customers.OrderBy(n => n.Name).ToList();
+        }
+
+        [HttpPut]
+        public int Save(Customer entity)
+        {
+            return db.SaveCustomer(entity);
+        }
+
+        [HttpDelete]
+        public bool Delete(int id)
+        {
+            return db.DeleteCustomer(id);
+        }
     }
 }

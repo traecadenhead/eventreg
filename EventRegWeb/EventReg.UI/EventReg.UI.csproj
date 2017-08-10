@@ -161,6 +161,7 @@
     <Content Include="AdminApp\client\scripts\services\root.js" />
     <Content Include="AdminApp\client\scripts\services\security.js" />
     <Content Include="AdminApp\client\views\common\header.html" />
+    <Content Include="AdminApp\client\views\customer\edit.html" />
     <Content Include="AdminApp\client\views\customer\index.html" />
     <Content Include="AdminApp\client\views\home\index.html" />
     <Content Include="AdminApp\client\views\home\signin.html" />
