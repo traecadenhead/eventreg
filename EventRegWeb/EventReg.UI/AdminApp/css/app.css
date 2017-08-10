@@ -31,6 +31,43 @@ form .item .field{
     display: block;
 }
 
-form .item .field input[type=text], form .item .field input[type=password]{
-    display: block;
+form input[type=text], form input[type=password], form select{
+    height: 30px;
+    font-size: 12pt;
+    min-width: 280px;
+}
+
+form input[type=submit]{
+    height: auto;
+}
+
+form input[type=button]
+{
+    width: auto;
+    height: 30px;
+    font-size: 12pt;
+    box-sizing: initial;
+}
+
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+}
+
+.list-group-item{
+    overflow: auto;
+}
+
+.list-group-item-float{
+    float: left;
+    margin: 10px;
+}
+
+.sortHandle{
+    background: url(../img/move.png) top left no-repeat;
+    height: 30px;
+    width: 30px;
+    background-size: 30px 30px;
+    text-indent: -99999px;
 }

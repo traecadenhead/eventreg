@@ -42,5 +42,9 @@ namespace EventReg.Model.Abstract
         int SaveCustomerPrefKey(CustomerPrefKey entity);
         bool DeleteCustomerPrefKey(int id);
         #endregion
+
+        #region Lists
+        List<ListHolder> GetAdminLists();
+        #endregion
     }
 }

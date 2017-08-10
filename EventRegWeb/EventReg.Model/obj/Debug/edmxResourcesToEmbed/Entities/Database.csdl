@@ -38,6 +38,7 @@
     <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="CustomerPrefs" Relationship="Self.FK_CustomerPrefs_CustomerPrefKeys" FromRole="CustomerPrefKeys" ToRole="CustomerPrefs" />
     <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Ordinal" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerPref">
     <Key>

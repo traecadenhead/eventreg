@@ -1,0 +1,28 @@
+﻿<div ng-controller="CustomerKeyAdd">
+    <h1>Add a Preference Key</h1>
+    <form ng-submit="Submit()">
+        <div class="item">
+            <label for="Name">Name</label>
+            <div class="field">
+                <input type="text" ng-model="entity.Name" required />
+            </div>
+        </div>
+        <div class="item">
+            <label for="Type">Type</label>
+            <div class="field">
+                <select ng-options="t.Key as t.Value for t in types" ng-model="entity.Type" required></select>
+            </div>
+        </div>
+        <div class="item">
+            <label for="Required">Required</label>
+            <div class="field">
+                <input type="checkbox" ng-model="entity.Required"/>
+            </div>
+        </div>
+        <div class="item">
+            <div class="field">
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
+</div>

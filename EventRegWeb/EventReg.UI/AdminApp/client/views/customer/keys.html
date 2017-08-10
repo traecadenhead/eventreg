@@ -1,16 +1,23 @@
 ﻿<div ng-controller="CustomerKeys">
     <h1>Preference Keys</h1>
-    <form ng-submit="Submit()">
+    <a class="btn-default" ui-sref="CustomerKeyAdd">Add a Key</a>
+    <form ng-if="keys.length > 0" ng-submit="Submit()">
         <ul data-as-sortable="sortingListener" data-ng-model="keys" class="list-group">
             <li ng-repeat="item in keys" data-as-sortable-item class="list-group-item">
-                <div data-as-sortable-item-handle class="list-group-item-heading">
+                <div data-as-sortable-item-handle class="list-group-item-float sortHandle">
+                    Drag to Sort
+                </div>
+                <div class="list-group-item-float">
                     <input type="text" ng-model="item.Name" />
                 </div>
-                <div class="list-group-item-text">
-                    <select ng-options="t for t in types" ng-model="item.Type"></select>
+                <div class="list-group-item-float">
+                    <select ng-options="t.Key as t.Value for t in types" ng-model="item.Type"></select>
                 </div>
-                <div class="list-group-item-text">
+                <div class="list-group-item-float">
                     Required: <input type="checkbox" ng-model="item.Required" />
+                </div>
+                <div class="list-group-item-float">
+                    <input type="button" ng-click="Remove(item)" value="Remove"/>
                 </div>
             </li>
         </ul>

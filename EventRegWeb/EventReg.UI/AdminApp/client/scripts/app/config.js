@@ -1,5 +1,5 @@
 ﻿// initialize app with angular plugins
-var app = angular.module('app', ['ui.router', 'angular-loading-bar', 'ngAnimate', 'ngSanitize', 'relativePathsInPartial', 'ui.bootstrap', 'angulartics', 'angulartics.google.analytics', 'ng.deviceDetector']);
+var app = angular.module('app', ['ui.router', 'angular-loading-bar', 'ngAnimate', 'ngSanitize', 'relativePathsInPartial', 'ui.bootstrap', 'angulartics', 'angulartics.google.analytics', 'ng.deviceDetector', 'as.sortable']);
 
 // configuration for angular app
 var configFunction = function ($stateProvider, $httpProvider, $locationProvider, cfpLoadingBarProvider, $urlRouterProvider, $urlMatcherFactory, $compileProvider, relativePathsInterceptorProvider) {

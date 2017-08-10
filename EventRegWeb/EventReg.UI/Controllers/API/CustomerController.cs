@@ -42,6 +42,12 @@ namespace EventReg.UI.Controllers.API
         }
 
         [HttpPut]
+        public int SaveKey(CustomerPrefKey entity)
+        {
+            return db.SaveCustomerPrefKey(entity);
+        }
+
+        [HttpPut]
         public bool SaveKeys(List<CustomerPrefKey> items)
         {
             foreach (var item in items)
@@ -49,6 +55,12 @@ namespace EventReg.UI.Controllers.API
                 db.SaveCustomerPrefKey(item);
             }
             return true;
+        }
+
+        [HttpDelete]
+        public bool DeleteKey(int id)
+        {
+            return db.DeleteCustomerPrefKey(id);
         }
     }
 }

@@ -157,12 +157,18 @@
     <Content Include="AdminApp\client\scripts\services\device.js" />
     <Content Include="AdminApp\client\scripts\services\ga-web.js" />
     <Content Include="AdminApp\client\scripts\services\ga.js" />
+    <Content Include="AdminApp\client\scripts\services\list.js" />
     <Content Include="AdminApp\client\scripts\services\objectHandler.js" />
     <Content Include="AdminApp\client\scripts\services\root.js" />
     <Content Include="AdminApp\client\scripts\services\security.js" />
     <Content Include="AdminApp\client\views\common\header.html" />
+    <Content Include="AdminApp\client\views\customer\admins.html" />
+    <Content Include="AdminApp\client\views\customer\basic.html" />
     <Content Include="AdminApp\client\views\customer\edit.html" />
     <Content Include="AdminApp\client\views\customer\index.html" />
+    <Content Include="AdminApp\client\views\customer\keyadd.html" />
+    <Content Include="AdminApp\client\views\customer\keys.html" />
+    <Content Include="AdminApp\client\views\customer\prefs.html" />
     <Content Include="AdminApp\client\views\home\index.html" />
     <Content Include="AdminApp\client\views\home\signin.html" />
     <Content Include="AdminApp\css\app.css" />
@@ -215,6 +221,7 @@
     <Compile Include="Controllers\API\AdminController.cs" />
     <Compile Include="Controllers\API\BaseController.cs" />
     <Compile Include="Controllers\API\CustomerController.cs" />
+    <Compile Include="Controllers\API\ListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\fonts\" />
+    <Folder Include="AdminApp\js\sortable\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>

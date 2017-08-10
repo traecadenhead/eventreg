@@ -40,6 +40,16 @@
             }
         }
     })
+    .state('CustomerKeyAdd', {
+        url: '/admin/customer/keys/add',
+        views: {
+            "mainContainer": {
+                templateUrl: function ($stateParams) {
+                    return '/AdminApp/client/views/customer/keyadd.html';
+                }
+            }
+        }
+    })
     .state('CustomerEdit', {
         url: '/admin/customer/edit/{customerID}',
         views: {

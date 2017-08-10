@@ -31,15 +31,19 @@
 
 // Keys
 (function (app) {
-    var CustomerKeys = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security) {
+    var CustomerKeys = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, list) {
 
         $scope.keys = [];
+        $scope.types = [];
 
         var Load = function () {
             security.CheckLogin("Admin").then(function () {
                 ga.TrackScreen("CustomerKeys");
                 db.List("customer", true, "keys").then(function (data) {
                     $scope.keys = data;
+                });
+                list.GetList("PreferenceKeyTypes").then(function (data) {
+                    $scope.types = data;
                 });
             });
         };
@@ -52,9 +56,27 @@
                 item.Ordinal = i;
                 i++;
             });
-            db.Save("customer", $scope.keys, "keys").success(function (result) {
+            db.Save("customer", $scope.keys, "keys").then(function (result) {
                 if (result) {
                     deviceSvc.Alert("The preference keys have been saved.");
+                }
+            });
+        };
+
+        $scope.Remove = function (item) {
+            deviceSvc.Confirm("Are you sure you want to remove this key?").then(function (answer) {
+                if (answer) {
+                    db.Delete("customer", item.CustomerPrefKeyID, "key").then(function (result) {
+                        if (result) {
+                            var keys = $scope.keys
+                            angular.forEach($scope.keys, function (key) {
+                                if (key.CustomerPrefKeyID != item.CustomerPrefKeyID) {
+                                    keys.push(key);
+                                }
+                            });
+                            $scope.keys = keys;
+                        }
+                    });
                 }
             });
         };
@@ -65,8 +87,45 @@
         });
     };
 
-    CustomerKeys.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security"];
+    CustomerKeys.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "list"];
     app.controller("CustomerKeys", CustomerKeys);
+}(angular.module("app")));
+
+// Key Add
+(function (app) {
+    var CustomerKeyAdd = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, list) {
+
+        $scope.entity = null;
+
+        var Load = function () {
+            security.CheckLogin("Admin").then(function () {
+                ga.TrackScreen("CustomerKeyAdd");
+                list.GetList("PreferenceKeyTypes").then(function (data) {
+                    $scope.types = data;
+                });
+            });
+        };
+
+        Load();
+
+        $scope.Submit = function () {
+            db.Save("customer", $scope.entity, "key").then(function (result) {
+                if (result > 0) {
+                    deviceSvc.Alert("The preference key has been saved.").then(function (data) {
+                        $state.go("CustomerKeys");
+                    });
+                }
+            });
+        };
+
+        // move to top of screen when view is loaded
+        $timeout(function () {
+            $window.scrollTo(0, 0);
+        });
+    };
+
+    CustomerKeyAdd.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "list"];
+    app.controller("CustomerKeyAdd", CustomerKeyAdd);
 }(angular.module("app")));
 
 // Edit

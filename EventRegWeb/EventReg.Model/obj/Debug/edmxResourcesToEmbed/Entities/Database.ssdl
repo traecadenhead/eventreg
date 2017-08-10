@@ -31,6 +31,7 @@
     <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="Type" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Required" Type="bit" Nullable="false" />
+    <Property Name="Ordinal" Type="int" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateModified" Type="datetime" Nullable="false" />

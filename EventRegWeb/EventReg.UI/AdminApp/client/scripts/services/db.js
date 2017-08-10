@@ -3,7 +3,6 @@
 
         var Post = function (controller, action, entity) {
             var deferred = $q.defer();
-            entity.Language = GetLanguage();
             var req = {
                 method: 'POST',
                 url: root.GetBaseUrl() + '/api/' + controller + '/' + action,
@@ -20,7 +19,6 @@
             if (subset == undefined || subset == null) {
                 subset = '';
             }
-            entity.Language = GetLanguage();
             var req = {
                 method: 'PUT',
                 url: root.GetBaseUrl() + '/api/' + type + '/save' + subset,
@@ -33,6 +31,7 @@
         };
 
         var Delete = function (type, id, subset) {
+            var deferred = $q.defer();
             if (subset == undefined || subset == null) {
                 subset = '';
             }
@@ -55,7 +54,7 @@
             if (subset == undefined || subset == null) {
                 subset = '';
             }
-            var str = "language=" + GetLanguage();
+            var str = '';
             if (id != undefined && id != null && id != '') {
                 str += "&id=" + id;
             }
@@ -81,7 +80,7 @@
             if (subset == undefined || subset == null) {
                 subset = '';
             }
-            var str = 'language=' + GetLanguage();
+            var str = '';
             if (additional != undefined && additional != null && additional != '') {
                 str += "&" + additional;
             }
@@ -99,7 +98,7 @@
             if (formMethod != undefined && formMethod != null && formMethod == "GET") {
                 var req = {
                     method: formMethod,
-                    url: root.GetBaseUrl() + '/api/' + type + '/' + action + '?language=' + GetLanguage() + '&' + entity
+                    url: root.GetBaseUrl() + '/api/' + type + '/' + action + '?' + entity
                 };
                 if (fresh == undefined || fresh == null) {
                     fresh = true;
@@ -179,19 +178,6 @@
             }
             // return promise
             return deferred.promise;
-        };
-
-        var SetLanguage = function (language) {
-            amplify.store("Language", language);
-        };
-
-        var GetLanguage = function () {
-            if (amplify.store("Language") != null) {
-                return amplify.store("Language");
-            }
-            else {
-                return "en";
-            }
         };
 
         return {

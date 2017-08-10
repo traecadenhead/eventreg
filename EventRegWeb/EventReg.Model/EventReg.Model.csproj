@@ -94,6 +94,7 @@
     <Compile Include="Concrete\CustomerPrefs.cs" />
     <Compile Include="Concrete\Customers.cs" />
     <Compile Include="Concrete\Helpers.cs" />
+    <Compile Include="Concrete\Lists.cs" />
     <Compile Include="Concrete\Repository.cs" />
     <Compile Include="Entities\Admin.cs">
       <DependentUpon>Database.tt</DependentUpon>
@@ -130,6 +131,8 @@
     <Compile Include="Entities\Partials\CustomerAdmin.cs" />
     <Compile Include="Entities\Partials\CustomerPref.cs" />
     <Compile Include="Entities\Partials\CustomerPrefKey.cs" />
+    <Compile Include="Entities\Partials\ListHolder.cs" />
+    <Compile Include="Entities\Partials\ListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,6 +29,7 @@
     <EntitySetMapping Name="CustomerPrefKeys">
       <EntityTypeMapping TypeName="EventReg.Model.Entities.CustomerPrefKey">
         <MappingFragment StoreEntitySet="CustomerPrefKeys">
+          <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="CustomerPrefKeyID" ColumnName="CustomerPrefKeyID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
