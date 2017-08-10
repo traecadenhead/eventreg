@@ -11,6 +11,7 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{'current': current == 'Home'}"><a ng-click="LoadState('Home')">RegMe - Admin</a></li>
                 <li ng-if="user.Type == 'Admin'" ng-class="{'current': current == 'Customer'}"><a ng-click="LoadState('Customers')">Customers</a></li>
+                <li ng-if="user.Type == 'Admin'" ng-class="{'current': current == 'CustomerKey'}"><a ng-click="LoadState('CustomerKeys')">Preference Keys</a></li>
             </ul>
         </div>
     </div>

@@ -1,23 +1,17 @@
 ﻿<div ng-controller="CustomerEdit">
-    <h1 ng-if="entity != null && entity.CustomerID > 0">{{entity.Name}}</h1>
-    <h1 ng-if="entity == null || entity.CustomerID == 0">Add a Customer</h1>
-    <form ng-submit="Submit()">
-        <div class="item">
-            <label for="Name">Name</label>
-            <div class="field">
-                <input type="text" ng-model="entity.Name" required />
-            </div>
-        </div>
-        <div class="item">
-            <label for="Identifier">URL Identifier</label>
-            <div class="field">
-                <input type="text" ng-model="entity.Identifier" required />
-            </div>
-        </div>
-        <div class="item">
-            <div class="field">
-                <input type="submit" value="Save" />
-            </div>
-        </div>
-    </form>
+    <h1 ng-if="customer != null && customer.CustomerID > 0">{{customer.Name}}</h1>
+    <h1 ng-if="customer == null || customer.CustomerID == 0">Add a Customer</h1>
+    <ul ng-if="customer != null && customer.CustomerID > 0" class="nav navbar-nav">
+        <li>
+            <a ng-click="Open('Basic')">Basic</a>
+        </li>
+        <li>
+            <a ng-click="Open('Prefs')">Prefs</a>
+        </li>
+        <li>
+            <a ng-click="Open('Admins')">Admins</a>
+        </li>
+    </ul>
+    <div ui-view="secondaryContainer">
+    </div>
 </div>

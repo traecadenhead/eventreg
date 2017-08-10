@@ -1,0 +1,21 @@
+﻿<div ng-controller="CustomerEditBasic">
+    <form ng-submit="Submit()">
+        <div class="item">
+            <label for="Name">Name</label>
+            <div class="field">
+                <input type="text" ng-model="entity.Name" required />
+            </div>
+        </div>
+        <div class="item">
+            <label for="Identifier">URL Identifier</label>
+            <div class="field">
+                <input type="text" ng-model="entity.Identifier" required />
+            </div>
+        </div>
+        <div class="item">
+            <div class="field">
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
+</div>

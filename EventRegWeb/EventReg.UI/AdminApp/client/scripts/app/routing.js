@@ -30,6 +30,16 @@
             }
         }
     })
+    .state('CustomerKeys', {
+        url: '/admin/customer/keys',
+        views: {
+            "mainContainer": {
+                templateUrl: function ($stateParams) {
+                    return '/AdminApp/client/views/customer/keys.html';
+                }
+            }
+        }
+    })
     .state('CustomerEdit', {
         url: '/admin/customer/edit/{customerID}',
         views: {
@@ -37,6 +47,30 @@
                 templateUrl: function ($stateParams) {
                     return '/AdminApp/client/views/customer/edit.html';
                 }
+            }
+        }
+    })
+    .state('CustomerEdit.Basic', {
+        url: '/basic',
+        views: {
+            "secondaryContainer": {
+                templateUrl: '/AdminApp/client/views/customer/basic.html'
+            }
+        }
+    })
+    .state('CustomerEdit.Prefs', {
+        url: '/prefs',
+        views: {
+            "secondaryContainer": {
+                templateUrl: '/AdminApp/client/views/customer/prefs.html'
+            }
+        }
+    })
+    .state('CustomerEdit.Admins', {
+        url: '/admins',
+        views: {
+            "secondaryContainer": {
+                templateUrl: '/AdminApp/client/views/customer/admins.html'
             }
         }
     })

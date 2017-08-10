@@ -27,7 +27,10 @@
 
         $transitions.onSuccess({ to: "*" }, function (trans) {
             var to = trans.to().name;
-            if (to.indexOf("Customer") >= 0) {
+            if (to.indexOf("CustomerKey") >= 0) {
+                to = "CustomerKey";
+            }
+            else if (to.indexOf("Customer") >= 0) {
                 to = "Customer";
             }
             $scope.current = to;

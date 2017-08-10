@@ -1,0 +1,23 @@
+﻿<div ng-controller="CustomerKeys">
+    <h1>Preference Keys</h1>
+    <form ng-submit="Submit()">
+        <ul data-as-sortable="sortingListener" data-ng-model="keys" class="list-group">
+            <li ng-repeat="item in keys" data-as-sortable-item class="list-group-item">
+                <div data-as-sortable-item-handle class="list-group-item-heading">
+                    <input type="text" ng-model="item.Name" />
+                </div>
+                <div class="list-group-item-text">
+                    <select ng-options="t for t in types" ng-model="item.Type"></select>
+                </div>
+                <div class="list-group-item-text">
+                    Required: <input type="checkbox" ng-model="item.Required" />
+                </div>
+            </li>
+        </ul>
+        <div class="item">
+            <div class="field">
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -36,6 +36,7 @@
           <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Required" Type="bit" Nullable="false" />
+          <Property Name="Ordinal" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateModified" Type="datetime" Nullable="false" />
@@ -175,6 +176,7 @@
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CustomerPrefs" Relationship="Self.FK_CustomerPrefs_CustomerPrefKeys" FromRole="CustomerPrefKeys" ToRole="CustomerPrefs" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Ordinal" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerPref">
           <Key>
@@ -307,6 +309,7 @@
           <EntitySetMapping Name="CustomerPrefKeys">
             <EntityTypeMapping TypeName="EventReg.Model.Entities.CustomerPrefKey">
               <MappingFragment StoreEntitySet="CustomerPrefKeys">
+                <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="CustomerPrefKeyID" ColumnName="CustomerPrefKeyID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

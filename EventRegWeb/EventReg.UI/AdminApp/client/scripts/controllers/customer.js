@@ -29,24 +29,99 @@
     app.controller("CustomerIndex", CustomerIndex);
 }(angular.module("app")));
 
+// Keys
+(function (app) {
+    var CustomerKeys = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security) {
+
+        $scope.keys = [];
+
+        var Load = function () {
+            security.CheckLogin("Admin").then(function () {
+                ga.TrackScreen("CustomerKeys");
+                db.List("customer", true, "keys").then(function (data) {
+                    $scope.keys = data;
+                });
+            });
+        };
+
+        Load();
+
+        $scope.Submit = function () {
+            var i = 1;
+            angular.forEach($scope.keys, function (item) {
+                item.Ordinal = i;
+                i++;
+            });
+            db.Save("customer", $scope.keys, "keys").success(function (result) {
+                if (result) {
+                    deviceSvc.Alert("The preference keys have been saved.");
+                }
+            });
+        };
+
+        // move to top of screen when view is loaded
+        $timeout(function () {
+            $window.scrollTo(0, 0);
+        });
+    };
+
+    CustomerKeys.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security"];
+    app.controller("CustomerKeys", CustomerKeys);
+}(angular.module("app")));
+
 // Edit
 (function (app) {
     var CustomerEdit = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, $stateParams) {
 
-        $scope.entity = null;
+        $scope.customer = null;
 
         var Load = function () {
             security.CheckLogin("Admin").then(function () {
                 ga.TrackScreen("CustomerEdit");
                 if (oh.HasValue($stateParams.customerID)) {
-                    db.Get("customer", $stateParams.customerID, true).then(function (data) {
-                        $scope.entity = data;
+                    db.Get("customer", $stateParams.customerID).then(function (data) {
+                        $scope.customer = data;
                     });
                 }
                 else {
-                    $scope.entity = { CustomerID: 0 };
+                    $scope.customer = { CustomerID: 0 };
+                    $scope.Open("Basic");
                 }
             });
+        };
+
+        Load();
+
+        $scope.Open = function (view) {
+            $state.go("CustomerEdit." + view, { "customerID": $scope.customer.CustomerID });
+        };
+
+        // move to top of screen when view is loaded
+        $timeout(function () {
+            $window.scrollTo(0, 0);
+        });
+    };
+
+    CustomerEdit.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "$stateParams"];
+    app.controller("CustomerEdit", CustomerEdit);
+}(angular.module("app")));
+
+// Edit Basic
+(function (app) {
+    var CustomerEditBasic = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, $stateParams) {
+
+        $scope.entity = null;
+
+        var Load = function () {
+            ga.TrackScreen("CustomerEdit.Basic");
+            if (oh.HasValue($stateParams.customerID)) {
+                db.Get("customer", $stateParams.customerID).then(function (data) {
+                    $scope.entity = data;
+                });
+            }
+            else {
+                $scope.entity = { CustomerID: 0 };
+            }
         };
 
         Load();
@@ -54,12 +129,14 @@
         $scope.Submit = function () {
             db.Save("customer", $scope.entity).then(function (result) {
                 if (result > 0) {
-                    deviceSvc.Alert("The customer information was saved.").then(function () {
-                        if (result != $scope.entity.CustomerID) {
-                            // reload the screen now that customer has an ID
-                            $state.go("CustomerEdit", { "customerID": result });
-                        }
-                    });
+                    db.Get("customer", $stateParams.customerID, true).then(function () {
+                        deviceSvc.Alert("The customer information was saved.").then(function () {
+                            if (result != $scope.entity.CustomerID) {
+                                // reload the screen now that customer has an ID
+                                $state.go("CustomerEdit.Basic", { "customerID": result });
+                            }
+                        });
+                    });                    
                 }
                 else {
                     deviceSvc.Alert("A problem occurred while saving the customer.");
@@ -73,6 +150,66 @@
         });
     };
 
-    CustomerEdit.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "$stateParams"];
-    app.controller("CustomerEdit", CustomerEdit);
+    CustomerEditBasic.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "$stateParams"];
+    app.controller("CustomerEditBasic", CustomerEditBasic);
+}(angular.module("app")));
+
+// Edit Prefs
+(function (app) {
+    var CustomerEditPrefs = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, $stateParams) {
+
+        $scope.entity = null;
+
+        var Load = function () {
+            ga.TrackScreen("CustomerEdit.Prefs");
+            if (oh.HasValue($stateParams.customerID)) {
+                db.Get("customer", $stateParams.customerID).then(function (data) {
+                    $scope.entity = data;
+                });
+            }
+            else {
+                $scope.entity = { CustomerID: 0 };
+            }
+        };
+
+        Load();
+
+        // move to top of screen when view is loaded
+        $timeout(function () {
+            $window.scrollTo(0, 0);
+        });
+    };
+
+    CustomerEditPrefs.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "$stateParams"];
+    app.controller("CustomerEditPrefs", CustomerEditPrefs);
+}(angular.module("app")));
+
+// Edit Admins
+(function (app) {
+    var CustomerEditAdmins = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, $stateParams) {
+
+        $scope.entity = null;
+
+        var Load = function () {
+            ga.TrackScreen("CustomerEdit.Admins");
+            if (oh.HasValue($stateParams.customerID)) {
+                db.Get("customer", $stateParams.customerID).then(function (data) {
+                    $scope.entity = data;
+                });
+            }
+            else {
+                $scope.entity = { CustomerID: 0 };
+            }
+        };
+
+        Load();
+
+        // move to top of screen when view is loaded
+        $timeout(function () {
+            $window.scrollTo(0, 0);
+        });
+    };
+
+    CustomerEditAdmins.$inject = ["$scope", "db", "oh", "$state", "root", "deviceSvc", "$sce", "$timeout", "$rootScope", "$window", "ga", "security", "$stateParams"];
+    app.controller("CustomerEditAdmins", CustomerEditAdmins);
 }(angular.module("app")));

@@ -10,6 +10,10 @@ a{
     cursor: pointer;
 }
 
+.navbar-nav{
+    float: none;
+}
+
 .navbar-collapse .navbar-nav > li.current > a{
     color: #ffffff;
 }

@@ -27,6 +27,7 @@ namespace EventReg.Model.Entities
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool Deleted { get; set; }
+        public int Ordinal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerPref> CustomerPrefs { get; set; }

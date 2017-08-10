@@ -34,5 +34,21 @@ namespace EventReg.UI.Controllers.API
         {
             return db.DeleteCustomer(id);
         }
+
+        [HttpGet]
+        public List<CustomerPrefKey> ListKeys()
+        {
+            return db.CustomerPrefKeys.OrderBy(n => n.Ordinal).ToList();
+        }
+
+        [HttpPut]
+        public bool SaveKeys(List<CustomerPrefKey> items)
+        {
+            foreach (var item in items)
+            {
+                db.SaveCustomerPrefKey(item);
+            }
+            return true;
+        }
     }
 }

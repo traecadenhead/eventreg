@@ -58,6 +58,7 @@ namespace EventReg.Model.Concrete
                     }
                     else
                     {
+                        entity.Ordinal = CustomerPrefKeys.OrderByDescending(n => n.Ordinal).Select(n => n.Ordinal).FirstOrDefault() + 1;
                         entity.DateCreated = DateTime.Now;
                         db.CustomerPrefKeys.Add(entity);
                     }
