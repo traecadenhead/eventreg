@@ -12,6 +12,7 @@ namespace EventReg.Model.Entities
     [MetadataType(typeof(CustomerPrefJson))]
     public partial class CustomerPref
     {
+        public CustomerPrefKey Key { get; set; }
     }
 
     public class CustomerPrefJson

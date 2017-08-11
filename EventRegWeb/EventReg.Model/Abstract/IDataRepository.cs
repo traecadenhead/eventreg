@@ -41,6 +41,8 @@ namespace EventReg.Model.Abstract
         IQueryable<CustomerPrefKey> CustomerPrefKeys { get; }
         int SaveCustomerPrefKey(CustomerPrefKey entity);
         bool DeleteCustomerPrefKey(int id);
+        List<CustomerPref> GetPrefsForCustomer(int customerID);
+        bool SavePrefsForCustomer(List<CustomerPref> prefs);
         #endregion
 
         #region Lists

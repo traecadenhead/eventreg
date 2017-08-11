@@ -1,3 +1,21 @@
 ﻿<div ng-controller="CustomerEditPrefs">
-    Prefs here
+    <form ng-submit="Submit()">
+        <div ng-repeat="item in prefs" class="item">
+            <label>Name</label>
+            <div ng-if="(item.Key.Type == 'TextBox' || (user.Type == 'Admin' && item.Key.Type == 'Hidden') && item.Key.Required" class="field">
+                <input type="text" ng-model="item.Value" required />
+            </div>
+            <div ng-if="(item.Key.Type == 'TextBox' || (user.Type == 'Admin' && item.Key.Type == 'Hidden') && !item.Key.Required" class="field">
+                <input type="text" ng-model="item.Value" />
+            </div>
+            <div ng-if="item.Key.Type == 'CheckBox'" class="field">
+                <input type="checkbox" ng-model="item.Value" />
+            </div>
+        </div>
+        <div class="item">
+            <div class="field">
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
 </div>

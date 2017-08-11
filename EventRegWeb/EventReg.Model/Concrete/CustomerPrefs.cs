@@ -95,6 +95,57 @@ namespace EventReg.Model.Concrete
             return false;
         }
 
+        public List<CustomerPref> GetPrefsForCustomer(int customerID)
+        {
+            List<CustomerPref> list = new List<CustomerPref>();
+            try
+            {
+                var keys = CustomerPrefKeys.OrderBy(n => n.Ordinal).ToList();
+                var prefs = CustomerPrefs.Where(n => n.CustomerID == customerID).ToList();
+                foreach(var key in keys)
+                {
+                    var pref = prefs.Where(n => n.CustomerPrefKeyID == key.CustomerPrefKeyID).FirstOrDefault();
+                    if(pref != null)
+                    {
+                        pref.Key = key;
+                        list.Add(pref);
+                    }
+                    else
+                    {
+                        list.Add(new CustomerPref
+                        {
+                            CustomerID = customerID,
+                            CustomerPrefKeyID = key.CustomerPrefKeyID,
+                            Value = String.Empty,
+                            Key = key
+                        });
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                HttpContext.Current.Trace.Warn(ex.ToString());
+            }
+            return list;
+        }
+
+        public bool SavePrefsForCustomer(List<CustomerPref> prefs)
+        {
+            try
+            {
+                foreach(var pref in prefs)
+                {
+                    SaveCustomerPref(pref);
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                HttpContext.Current.Trace.Warn(ex.ToString());
+            }
+            return false;
+        }
+
         # endregion
     }
 }

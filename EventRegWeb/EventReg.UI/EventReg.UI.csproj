@@ -177,6 +177,7 @@
     <Content Include="AdminApp\css\bootstrap.css" />
     <Content Include="AdminApp\css\bootstrap.min.css" />
     <Content Include="AdminApp\img\burger.png" />
+    <Content Include="AdminApp\img\move.png" />
     <Content Include="AdminApp\img\search.png" />
     <Content Include="AdminApp\js\amplify.min.js" />
     <Content Include="AdminApp\js\angular-animate.min.js" />

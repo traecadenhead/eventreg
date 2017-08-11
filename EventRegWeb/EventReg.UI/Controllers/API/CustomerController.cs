@@ -36,6 +36,18 @@ namespace EventReg.UI.Controllers.API
         }
 
         [HttpGet]
+        public List<CustomerPref> GetPrefs(int id)
+        {
+            return db.GetPrefsForCustomer(id);
+        }
+
+        [HttpPut]
+        public bool SavePrefs(List<CustomerPref> list)
+        {
+            return db.SavePrefsForCustomer(list);
+        }
+
+        [HttpGet]
         public List<CustomerPrefKey> ListKeys()
         {
             return db.CustomerPrefKeys.OrderBy(n => n.Ordinal).ToList();

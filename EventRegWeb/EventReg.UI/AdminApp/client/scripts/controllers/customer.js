@@ -217,21 +217,29 @@
 (function (app) {
     var CustomerEditPrefs = function ($scope, db, oh, $state, root, deviceSvc, $sce, $timeout, $rootScope, $window, ga, security, $stateParams) {
 
-        $scope.entity = null;
+        $scope.prefs = [];
 
         var Load = function () {
             ga.TrackScreen("CustomerEdit.Prefs");
             if (oh.HasValue($stateParams.customerID)) {
-                db.Get("customer", $stateParams.customerID).then(function (data) {
-                    $scope.entity = data;
+                db.Get("customer", $stateParams.customerID, true, "prefs").then(function (data) {
+                    $scope.prefs = data;
                 });
             }
             else {
-                $scope.entity = { CustomerID: 0 };
+                $stage.go("Customers");
             }
         };
 
         Load();
+
+        $scope.submit = function () {
+            db.Save("customer", $scope.prefs, "prefs").then(function (result) {
+                if (result) {
+                    deviceSvc.Alert("The prefs have beens saved.");
+                }
+            });
+        };
 
         // move to top of screen when view is loaded
         $timeout(function () {
